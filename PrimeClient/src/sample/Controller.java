@@ -15,15 +15,15 @@ public class Controller {
     final ToggleGroup group = new ToggleGroup();
 
     @FXML
-    Button button_go;
+    private Button button_go;
     @FXML
-    TextField tf_Limit;
+    private TextField tf_Limit;
     @FXML
-    TextArea ta_display;
+    private TextArea ta_display;
     @FXML
-    RadioButton radio_Integer;
+    private RadioButton radio_Integer;
     @FXML
-    RadioButton radio_String;
+    private RadioButton radio_String;
 
 
     public void initialize() {
