@@ -32,5 +32,9 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 
+# Misc
+*.swp
+release.properties
+
 hs_err_pid*
 
