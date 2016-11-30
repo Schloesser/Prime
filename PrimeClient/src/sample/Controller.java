@@ -12,10 +12,9 @@ import java.util.List;
 public class Controller {
 
 
-    final ToggleGroup group = new ToggleGroup();
+    private final ToggleGroup group = new ToggleGroup();
 
-    @FXML
-    private Button button_go;
+
     @FXML
     private TextField tf_Limit;
     @FXML

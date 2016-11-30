@@ -12,7 +12,6 @@ public class PrimeImpl extends UnicastRemoteObject implements Prime
 	 * 
 	 */
 	private static final long serialVersionUID = -658020054368051290L;
-	public Prime client = null;
 	public PrimeImpl() throws RemoteException
 	{
 		super();

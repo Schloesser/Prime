@@ -16,7 +16,6 @@ public class PrimeNumber {
 	public List<Integer> getPrimeInterger(int max)
 	{
 		return calcPrime(max);
-		
 	}
 
 	private String parseToString(List<Integer> list)
@@ -34,10 +33,10 @@ public class PrimeNumber {
 
 	private List<Integer> calcPrime(int max)
 	{
-		List<Integer> temp = new ArrayList<Integer>();
-		List<Integer> list = new ArrayList<Integer>();
+		List<Integer> temp = new ArrayList<>();
+		List<Integer> list = new ArrayList<>();
 		// intit Arraylist
-		long start = System.currentTimeMillis() % 1000;
+
 		for (int i = 0; i <= max; i++)
 		{
 			temp.add(i, i);
