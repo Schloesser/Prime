@@ -16,7 +16,7 @@
 *.iws
 *.ipr
 .idea/
-/out/
+out/
 
 # eclipse project file
 .settings/
