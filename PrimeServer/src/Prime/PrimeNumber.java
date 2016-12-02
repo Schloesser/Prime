@@ -11,7 +11,6 @@ public class PrimeNumber {
 	public String getPrimeStringNumber(int max)
 	{
 		return parseToStringNumber(calcPrime(max));
-
 	}
 	public String getPrimeString(int max)
 	{
