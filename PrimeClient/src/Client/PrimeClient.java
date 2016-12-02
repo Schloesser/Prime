@@ -9,10 +9,13 @@ import java.util.List;
 
 import RemoteObjects.Prime;
 
-
+/**
+ * The prime client offers methods which make a request to a server
+ */
 public class PrimeClient {
-
+    // the stub is nothing but a proxy for the remote object
     private static Prime stub;
+
     public static List<Integer> getPrimeInteger(int max) throws NotBoundException, IOException {
 
         // intitalisieren des Remote-Objektes/Stubs mit der Implementation des Servers.

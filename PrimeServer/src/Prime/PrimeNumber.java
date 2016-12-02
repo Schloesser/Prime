@@ -12,6 +12,7 @@ public class PrimeNumber {
 	{
 		return parseToStringNumber(calcPrime(max));
 	}
+
 	public String getPrimeString(int max)
 	{
 		return parseToString(calcPrime(max));
@@ -25,6 +26,11 @@ public class PrimeNumber {
 		return calcPrime(max);
 	}
 
+	/**
+	 *  This method parses a list of integers to a string of numbers ("1 2 3")
+	 * @param list
+	 * @return
+	 */
 	private String parseToStringNumber(List<Integer> list)
 	{
 		StringBuffer buffer = new StringBuffer();
@@ -36,6 +42,11 @@ public class PrimeNumber {
 		}
 		return buffer.toString();
 	}
+	/**
+	 *  This method parses a list of integers to words ("eins zwei drei")
+	 * @param list
+	 * @return
+	 */
 	private String parseToString(List<Integer> list)
 	{
 		StringBuffer buffer = new StringBuffer();
@@ -48,8 +59,12 @@ public class PrimeNumber {
 		}
 		return buffer.toString();
 	}
-	
 
+	/**
+	 * this method returns a list of primes by a given limit
+	 * @param max
+	 * @return
+	 */
 	private List<Integer> calcPrime(int max)
 	{
 		List<Integer> temp = new ArrayList<>();

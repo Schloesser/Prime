@@ -4,6 +4,11 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+/**
+ * This remote Object provides the methods which can be used by the clients. It is very important
+ * that this class exists on each client. Be sure it is EXACTLY the same and
+ especially the package name has to be the same too. Except comments.
+ */
 public interface Prime extends Remote
 {
 

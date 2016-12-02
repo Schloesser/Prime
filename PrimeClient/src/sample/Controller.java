@@ -26,11 +26,23 @@ public class Controller {
     @FXML
     private RadioButton radio_String;
 
-
+    /**
+     * Even the compiler says this method is never used, I believe it is !
+     */
     public void initialize() {
         radio_Integer.setToggleGroup(group);
         radio_String.setToggleGroup(group);
     }
+
+    /**
+     * Depend on which mode is selected by the radios, this method will print integers
+     * or strings to the text area. The data come from the server, so a NotBoundException will be thrown
+     * if the server can't handle the request.
+     *
+     * PLEASE DELETE THIS LINE IF YOU ALREADY IMPLEMENTED THE CATCH OF THE EXCEPTION OTHERWISE PLEASE IMPLEMENT IT!:)
+     * @throws IOException
+     * @throws NotBoundException
+     */
     @FXML
     protected void goButtonAction() throws IOException, NotBoundException {
     if(radio_Integer.isSelected())

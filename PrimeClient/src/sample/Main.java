@@ -7,6 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * This class starts the Fx-Application. It uses the sample.fxml place Fx-Components of a scene
+ * and the controller to control action from the user. Both are connected to each other by annotations.
+ */
 public class Main extends Application {
 
     @Override

@@ -7,6 +7,10 @@ import RemoteObjects.PrimeImpl;
 
 public class PrimeServer {
 
+	/**
+	 * The primeserver provides a Remote Object to the registry which can be found by the name "Prime"
+	 * @param argv
+	 */
 	public static void main(String[] argv) {
 		try {
 
