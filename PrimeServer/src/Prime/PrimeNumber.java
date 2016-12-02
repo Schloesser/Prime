@@ -1,30 +1,50 @@
 package Prime;
 
+import util.NumberToText;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class PrimeNumber {
 
 
+	public String getPrimeStringNumber(int max)
+	{
+		return parseToStringNumber(calcPrime(max));
+
+	}
 	public String getPrimeString(int max)
 	{
 		return parseToString(calcPrime(max));
 
 	}
 
-	
+
+
 	public List<Integer> getPrimeInterger(int max)
 	{
 		return calcPrime(max);
 	}
 
-	private String parseToString(List<Integer> list)
+	private String parseToStringNumber(List<Integer> list)
 	{
 		StringBuffer buffer = new StringBuffer();
 
 		for (Integer integer : list)
 		{
 			buffer.append(integer.toString()).append(" ");
+
+		}
+		return buffer.toString();
+	}
+	private String parseToString(List<Integer> list)
+	{
+		StringBuffer buffer = new StringBuffer();
+
+		for (Integer integer : list)
+		{
+			 buffer.append(NumberToText.intToText(integer)).append("\n");
+
 
 		}
 		return buffer.toString();

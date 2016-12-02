@@ -15,7 +15,7 @@ public class NumberToText {
          *
          * @return Text für die Zahl
          */
-        public static String intToText10(int x) {
+        private static String intToText10(int x) {
             int y=x/10; /* nur Zehnerstelle */
             switch(y) {
                 case 1:
@@ -49,7 +49,7 @@ public class NumberToText {
          *
          * @return Text für die Zahl
          */
-        public static String intToText100(int x,int digits) {
+        private static String intToText100(int x,int digits) {
             int y=x%100; /* nur Einer- und Zehnerstelle */
         /* -- Sonderbehandlung der Zahl 1 -- */
             if(y==1) {
@@ -136,7 +136,7 @@ public class NumberToText {
          *
          * @return Text für die Zahl
          */
-        public static String intToText1000(int x,int digits) {
+        private static String intToText1000(int x,int digits) {
             if(x/100==0) {
                 return intToText100(x,digits);
             } else {
@@ -152,7 +152,7 @@ public class NumberToText {
          *
          * @return Zahlen-Suffix
          */
-        public static String intToTextDigits(int digits,boolean mz) {
+        private static String intToTextDigits(int digits,boolean mz) {
             if(mz) { /* Mehrzahl oder Einzahl ? */
                 switch(digits) {
                     case 0:

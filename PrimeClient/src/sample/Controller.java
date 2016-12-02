@@ -3,6 +3,8 @@ import Client.PrimeClient;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 
 import java.io.IOException;
