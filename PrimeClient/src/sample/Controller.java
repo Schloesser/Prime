@@ -1,60 +1,72 @@
 package sample;
-import Client.PrimeClient;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.TextArea;
-
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
-import java.util.List;
+
+import Client.NumberAlert;
+import Client.PrimeIntTask;
+import Client.PrimeStringTask;
+import javafx.concurrent.Task;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 public class Controller {
 
+	private ToggleGroup group;
 
-    private final ToggleGroup group = new ToggleGroup();
+	@FXML
+	private TextField tf_Limit;
+	@FXML
+	private TextArea ta_display;
+	@FXML
+	private RadioButton radio_Integer;
+	@FXML
+	private RadioButton radio_String;
+	@FXML
+	private Button btn_go;
 
+	public void initialize() {
+		group = new ToggleGroup();
+		radio_Integer.setToggleGroup(group);
+		radio_String.setToggleGroup(group);
+	}
 
-    @FXML
-    private TextField tf_Limit;
-    @FXML
-    private TextArea ta_display;
-    @FXML
-    private RadioButton radio_Integer;
-    @FXML
-    private RadioButton radio_String;
+	@FXML
+	protected void goButtonAction() throws IOException, NotBoundException {
 
+		int max = 0;
 
-    public void initialize() {
-        radio_Integer.setToggleGroup(group);
-        radio_String.setToggleGroup(group);
-    }
-    @FXML
-    protected void goButtonAction() throws IOException, NotBoundException {
-    if(radio_Integer.isSelected())
-    {
-        int max = Integer.parseInt(tf_Limit.getText());
-        List<Integer> primes= PrimeClient.getPrimeInteger(max);
-        String out = "";
-        for(Integer prime : primes)
-        {
-            out = out + String.valueOf(prime) + "\n";
-        }
+		// Lese die Zahl in der TextBox ein
+		try {
+			max = Integer.parseInt(tf_Limit.getText());
+			// loese bei Zahlen <= 0 den selben ErrorDialog aus.
+			if (max <= 0) {
+				throw new NumberFormatException();
+			}
+		} catch (NumberFormatException e) {
+			new NumberAlert().showAndWait();
+			return;
+		}
+		
+		// disable Go_Button
+		btn_go.setDisable(true);
 
-        ta_display.setText(out);
+		if (radio_Integer.isSelected()) {
+			Task<Void> primeIntTask = new PrimeIntTask(max, ta_display, btn_go);
+			new Thread(primeIntTask).start();
 
-    }else if(radio_String.isSelected())
-    {
-        int max = Integer.parseInt(tf_Limit.getText());
-        String primes= PrimeClient.getPrimeString(max);
+		} else if (radio_String.isSelected()) {
 
-        ta_display.setText(primes);
-    }
+			Task<Void> primeStringTask = new PrimeStringTask(max, ta_display, btn_go);
+			new Thread(primeStringTask).start();
+		} else {
+			btn_go.setDisable(false);
+		}
 
-
-    }
-
-
-
+	}
 
 }

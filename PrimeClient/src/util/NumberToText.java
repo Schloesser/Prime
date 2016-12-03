@@ -1,8 +1,5 @@
 package util;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 /**
  * Created by stefanschloesser1 on 20.11.16.
  */

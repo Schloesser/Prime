@@ -24,7 +24,7 @@ public class PrimeNumber {
 
 		for (Integer integer : list)
 		{
-			buffer.append(integer.toString()).append(" ");
+			buffer.append(integer).append(" ");
 
 		}
 		return buffer.toString();
