@@ -1,5 +1,9 @@
 package sample;
+import Client.NumberAlert;
 import Client.PrimeClient;
+import Client.PrimeIntTask;
+import Client.PrimeStringTask;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
