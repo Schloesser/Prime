@@ -3,8 +3,6 @@ import Client.PrimeClient;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
 
 import java.io.IOException;
@@ -13,27 +11,27 @@ import java.util.List;
 
 public class Controller {
 
+	private ToggleGroup group;
 
-    private final ToggleGroup group = new ToggleGroup();
-
-
-    @FXML
-    private TextField tf_Limit;
-    @FXML
-    private TextArea ta_display;
-    @FXML
-    private RadioButton radio_Integer;
-    @FXML
-    private RadioButton radio_String;
+	@FXML
+	private TextField tf_Limit;
+	@FXML
+	private TextArea ta_display;
+	@FXML
+	private RadioButton radio_Integer;
+	@FXML
+	private RadioButton radio_String;
+	@FXML
+	private Button btn_go;
 
     /**
      * Even the compiler says this method is never used, I believe it is !
      */
-    public void initialize() {
-        radio_Integer.setToggleGroup(group);
-        radio_String.setToggleGroup(group);
-    }
-
+	public void initialize() {
+		group = new ToggleGroup();
+		radio_Integer.setToggleGroup(group);
+		radio_String.setToggleGroup(group);
+	}
     /**
      * Depend on which mode is selected by the radios, this method will print integers
      * or strings to the text area. The data come from the server, so a NotBoundException will be thrown
@@ -43,32 +41,38 @@ public class Controller {
      * @throws IOException
      * @throws NotBoundException
      */
-    @FXML
-    protected void goButtonAction() throws IOException, NotBoundException {
-    if(radio_Integer.isSelected())
-    {
-        int max = Integer.parseInt(tf_Limit.getText());
-        List<Integer> primes= PrimeClient.getPrimeInteger(max);
-        String out = "";
-        for(Integer prime : primes)
-        {
-            out = out + String.valueOf(prime) + "\n";
-        }
+	@FXML
+	protected void goButtonAction() throws IOException, NotBoundException {
 
-        ta_display.setText(out);
+		int max = 0;
 
-    }else if(radio_String.isSelected())
-    {
-        int max = Integer.parseInt(tf_Limit.getText());
-        String primes= PrimeClient.getPrimeString(max);
+		// Lese die Zahl in der TextBox ein
+		try {
+			max = Integer.parseInt(tf_Limit.getText());
+			// loese bei Zahlen <= 0 den selben ErrorDialog aus.
+			if (max <= 0) {
+				throw new NumberFormatException();
+			}
+		} catch (NumberFormatException e) {
+			new NumberAlert().showAndWait();
+			return;
+		}
 
-        ta_display.setText(primes);
-    }
+		// disable Go_Button
+		btn_go.setDisable(true);
 
+		if (radio_Integer.isSelected()) {
+			Task<Void> primeIntTask = new PrimeIntTask(max, ta_display, btn_go);
+			new Thread(primeIntTask).start();
 
-    }
+		} else if (radio_String.isSelected()) {
 
+			Task<Void> primeStringTask = new PrimeStringTask(max, ta_display, btn_go);
+			new Thread(primeStringTask).start();
+		} else {
+			btn_go.setDisable(false);
+		}
 
-
+	}
 
 }
