@@ -18,24 +18,35 @@ public class PrimeNumber {
 		return calcPrime(max);
 	}
 
+	/**
+	 * Wandelt die Liste von Integer-Werten in einen String um
+	 * @param list
+	 * @return
+	 */
 	private String parseToString(List<Integer> list)
 	{
 		StringBuffer buffer = new StringBuffer();
 
 		for (Integer integer : list)
 		{
-			buffer.append(integer).append(" ");
-
+			buffer.append(integer).append("\n");
 		}
 		return buffer.toString();
 	}
 	
 
+	/**
+	 * TODO: 
+	 * sollte eigentlich die ersten "max" Primzahlen zurückgeben
+	 * und nicht nur die Primzahlen im Intervall 0 < i < max
+	 * @param max
+	 * @return
+	 */
 	private List<Integer> calcPrime(int max)
 	{
 		List<Integer> temp = new ArrayList<>();
 		List<Integer> list = new ArrayList<>();
-		// intit Arraylist
+		// init Arraylist
 
 		for (int i = 0; i <= max; i++)
 		{

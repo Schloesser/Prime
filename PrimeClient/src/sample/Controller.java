@@ -3,9 +3,10 @@ package sample;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 
-import Client.NumberAlert;
-import Client.PrimeIntTask;
-import Client.PrimeStringTask;
+import Client.PrimeCall;
+import Client.PrimeCallInteger;
+import Client.PrimeCallString;
+import Client.PrimeTask;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,26 +14,30 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import util.ui.alerts.NumberAlert;
 
 public class Controller {
 
 	private ToggleGroup group;
 
 	@FXML
-	private TextField tf_Limit;
+	private TextField tfLimit;
 	@FXML
-	private TextArea ta_display;
+	private TextArea taDisplay;
 	@FXML
-	private RadioButton radio_Integer;
+	private RadioButton radioInteger;
 	@FXML
-	private RadioButton radio_String;
+	private RadioButton radioString;
 	@FXML
-	private Button btn_go;
+	private RadioButton radioObject;
+	@FXML
+	private Button btnGo;
 
 	public void initialize() {
 		group = new ToggleGroup();
-		radio_Integer.setToggleGroup(group);
-		radio_String.setToggleGroup(group);
+		radioInteger.setToggleGroup(group);
+		radioString.setToggleGroup(group);
+		radioObject.setToggleGroup(group);
 	}
 
 	@FXML
@@ -42,7 +47,7 @@ public class Controller {
 
 		// Lese die Zahl in der TextBox ein
 		try {
-			max = Integer.parseInt(tf_Limit.getText());
+			max = Integer.parseInt(tfLimit.getText());
 			// loese bei Zahlen <= 0 den selben ErrorDialog aus.
 			if (max <= 0) {
 				throw new NumberFormatException();
@@ -51,20 +56,32 @@ public class Controller {
 			new NumberAlert().showAndWait();
 			return;
 		}
-		
-		// disable Go_Button
-		btn_go.setDisable(true);
 
-		if (radio_Integer.isSelected()) {
-			Task<Void> primeIntTask = new PrimeIntTask(max, ta_display, btn_go);
-			new Thread(primeIntTask).start();
+		// disable Go-Button
+		btnGo.setDisable(true);
 
-		} else if (radio_String.isSelected()) {
+		// Strategy Pattern
+		// PrimeCall delegiert an die jeweilige Implementierung des RMICalls
+		// dadurch müssen keine extra PrimeTasks für die Übertragung als
+		// Int-Array, als String bzw als eigenes Objekt erstellt werden.
+		PrimeCall primeCall = null;
 
-			Task<Void> primeStringTask = new PrimeStringTask(max, ta_display, btn_go);
-			new Thread(primeStringTask).start();
+		if (radioInteger.isSelected()) {
+			primeCall = new PrimeCallInteger();
+
+		} else if (radioString.isSelected()) {
+			primeCall = new PrimeCallString();
+		} else if (radioObject.isSelected()) {
+			// TODO: Hier sollte der RMICall als Objekt hinzugefügt werden
+			primeCall = null;
+			btnGo.setDisable(false);
 		} else {
-			btn_go.setDisable(false);
+			btnGo.setDisable(false);
+		}
+
+		if (primeCall != null) {
+			Task<Void> primeTask = new PrimeTask(max, primeCall, taDisplay, btnGo);
+			new Thread(primeTask).start();
 		}
 
 	}

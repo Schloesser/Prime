@@ -12,15 +12,16 @@
 <Pane maxHeight="700" maxWidth="800" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Label layoutX="35.0" layoutY="307.0" prefHeight="17.0" prefWidth="76.0" text="Limit" />
-      <TextField fx:id="tf_Limit" layoutX="89.0" layoutY="302.0" prefHeight="27.0" prefWidth="60.0" text="100" />
-      <RadioButton fx:id="radio_Integer" layoutX="82.0" layoutY="227.0" mnemonicParsing="false" selected="true" text="get as Integer" />
-      <RadioButton fx:id="radio_String" layoutX="82.0" layoutY="256.0" mnemonicParsing="false" text="get as String" />
+      <TextField fx:id="tfLimit" layoutX="89.0" layoutY="302.0" prefHeight="27.0" prefWidth="60.0" text="100" />
+      <RadioButton fx:id="radioInteger" layoutX="80.0" layoutY="170.0" mnemonicParsing="false" selected="true" text="get as Integer" />
+      <RadioButton fx:id="radioString" layoutX="80.0" layoutY="200.0" mnemonicParsing="false" text="get as String" />
+      <RadioButton fx:id="radioObject" layoutX="80.0" layoutY="230.0" mnemonicParsing="false" text="get as Object" />
       <Label alignment="CENTER" layoutX="233.0" layoutY="35.0" text="Prime">
          <font>
             <Font size="42.0" />
          </font>
       </Label>
-      <Button fx:id="btn_go" layoutX="485.0" layoutY="347.0" mnemonicParsing="false" onAction="#goButtonAction" prefHeight="27.0" prefWidth="69.0" text="Go" />
-      <TextArea fx:id="ta_display" editable="false" layoutX="354.0" layoutY="116.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="btnGo" layoutX="485.0" layoutY="347.0" mnemonicParsing="false" onAction="#goButtonAction" prefHeight="27.0" prefWidth="69.0" text="Go" />
+      <TextArea fx:id="taDisplay" editable="false" layoutX="354.0" layoutY="116.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </Pane>

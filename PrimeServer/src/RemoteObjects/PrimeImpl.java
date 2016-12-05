@@ -20,16 +20,15 @@ public class PrimeImpl extends UnicastRemoteObject implements Prime
 
 
 	@Override
-	public List<Integer> getPrimeInt(int max) throws RemoteException{
+	public List<Integer> getPrimeInt(int max) throws RemoteException {
 		PrimeNumber prime = new PrimeNumber();
 		return prime.getPrimeInterger(max);
-		
 	}
+	
 	@Override
-	public String getPrimeString(int max) throws RemoteException{
+	public String getPrimeString(int max) throws RemoteException {
 		PrimeNumber prime = new PrimeNumber();
 		return prime.getPrimeString(max);
-
 	}
 
 
