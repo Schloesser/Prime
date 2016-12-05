@@ -1,17 +1,10 @@
 package Prime;
 
-import util.NumberToText;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class PrimeNumber {
 
-
-	public String getPrimeStringNumber(int max)
-	{
-		return parseToStringNumber(calcPrime(max));
-	}
 
 	public String getPrimeString(int max)
 	{
@@ -19,31 +12,14 @@ public class PrimeNumber {
 
 	}
 
-
-
+	
 	public List<Integer> getPrimeInterger(int max)
 	{
 		return calcPrime(max);
 	}
 
 	/**
-	 *  This method parses a list of integers to a string of numbers ("1 2 3")
-	 * @param list
-	 * @return
-	 */
-	private String parseToStringNumber(List<Integer> list)
-	{
-		StringBuffer buffer = new StringBuffer();
-
-		for (Integer integer : list)
-		{
-			buffer.append(integer).append(" ");
-
-		}
-		return buffer.toString();
-	}
-	/**
-	 *  This method parses a list of integers to words ("eins zwei drei")
+	 * Wandelt die Liste von Integer-Werten in einen String um
 	 * @param list
 	 * @return
 	 */
@@ -53,15 +29,16 @@ public class PrimeNumber {
 
 		for (Integer integer : list)
 		{
-			 buffer.append(NumberToText.intToText(integer)).append("\n");
-
-
+			buffer.append(integer).append("\n");
 		}
 		return buffer.toString();
 	}
+	
 
 	/**
-	 * this method returns a list of primes by a given limit
+	 * TODO: 
+	 * sollte eigentlich die ersten "max" Primzahlen zurückgeben
+	 * und nicht nur die Primzahlen im Intervall 0 < i < max
 	 * @param max
 	 * @return
 	 */
@@ -69,7 +46,7 @@ public class PrimeNumber {
 	{
 		List<Integer> temp = new ArrayList<>();
 		List<Integer> list = new ArrayList<>();
-		// intit Arraylist
+		// init Arraylist
 
 		for (int i = 0; i <= max; i++)
 		{

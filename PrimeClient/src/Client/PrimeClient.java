@@ -17,7 +17,7 @@ public class PrimeClient {
     public static List<Integer> getPrimeInteger(int max) throws NotBoundException, IOException {
 
         // intitalisieren des Remote-Objektes/Stubs mit der Implementation des Servers.
-         stub = (Prime) Naming.lookup("Prime");
+        stub = (Prime) Naming.lookup("Prime");
 
         List<Integer> primes = stub.getPrimeInt(max);
 
@@ -27,7 +27,7 @@ public class PrimeClient {
     public static String getPrimeString(int max) throws NotBoundException, IOException {
 
         // intitalisieren des Remote-Objektes/Stubs mit der Implementation des Servers.
-         stub = (Prime) Naming.lookup("Prime");
+        stub = (Prime) Naming.lookup("Prime");
 
         String primes = stub.getPrimeString(max);
 

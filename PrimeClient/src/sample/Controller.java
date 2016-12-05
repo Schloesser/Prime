@@ -1,50 +1,45 @@
 package sample;
-import Client.NumberAlert;
-import Client.PrimeClient;
-import Client.PrimeIntTask;
-import Client.PrimeStringTask;
-import javafx.concurrent.Task;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.TextArea;
-
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
-import java.util.List;
+
+import Client.PrimeCall;
+import Client.PrimeCallInteger;
+import Client.PrimeCallString;
+import Client.PrimeTask;
+import javafx.concurrent.Task;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import util.ui.alerts.NumberAlert;
 
 public class Controller {
 
 	private ToggleGroup group;
 
 	@FXML
-	private TextField tf_Limit;
+	private TextField tfLimit;
 	@FXML
-	private TextArea ta_display;
+	private TextArea taDisplay;
 	@FXML
-	private RadioButton radio_Integer;
+	private RadioButton radioInteger;
 	@FXML
-	private RadioButton radio_String;
+	private RadioButton radioString;
 	@FXML
-	private Button btn_go;
+	private RadioButton radioObject;
+	@FXML
+	private Button btnGo;
 
-    /**
-     * Even the compiler says this method is never used, I believe it is !
-     */
 	public void initialize() {
 		group = new ToggleGroup();
-		radio_Integer.setToggleGroup(group);
-		radio_String.setToggleGroup(group);
+		radioInteger.setToggleGroup(group);
+		radioString.setToggleGroup(group);
+		radioObject.setToggleGroup(group);
 	}
-    /**
-     * Depend on which mode is selected by the radios, this method will print integers
-     * or strings to the text area. The data come from the server, so a NotBoundException will be thrown
-     * if the server can't handle the request.
-     *
-     * PLEASE DELETE THIS LINE IF YOU ALREADY IMPLEMENTED THE CATCH OF THE EXCEPTION OTHERWISE PLEASE IMPLEMENT IT!:)
-     * @throws IOException
-     * @throws NotBoundException
-     */
+
 	@FXML
 	protected void goButtonAction() throws IOException, NotBoundException {
 
@@ -52,7 +47,7 @@ public class Controller {
 
 		// Lese die Zahl in der TextBox ein
 		try {
-			max = Integer.parseInt(tf_Limit.getText());
+			max = Integer.parseInt(tfLimit.getText());
 			// loese bei Zahlen <= 0 den selben ErrorDialog aus.
 			if (max <= 0) {
 				throw new NumberFormatException();
@@ -62,19 +57,31 @@ public class Controller {
 			return;
 		}
 
-		// disable Go_Button
-		btn_go.setDisable(true);
+		// disable Go-Button
+		btnGo.setDisable(true);
 
-		if (radio_Integer.isSelected()) {
-			Task<Void> primeIntTask = new PrimeIntTask(max, ta_display, btn_go);
-			new Thread(primeIntTask).start();
+		// Strategy Pattern
+		// PrimeCall delegiert an die jeweilige Implementierung des RMICalls
+		// dadurch müssen keine extra PrimeTasks für die Übertragung als
+		// Int-Array, als String bzw als eigenes Objekt erstellt werden.
+		PrimeCall primeCall = null;
 
-		} else if (radio_String.isSelected()) {
+		if (radioInteger.isSelected()) {
+			primeCall = new PrimeCallInteger();
 
-			Task<Void> primeStringTask = new PrimeStringTask(max, ta_display, btn_go);
-			new Thread(primeStringTask).start();
+		} else if (radioString.isSelected()) {
+			primeCall = new PrimeCallString();
+		} else if (radioObject.isSelected()) {
+			// TODO: Hier sollte der RMICall als Objekt hinzugefügt werden
+			primeCall = null;
+			btnGo.setDisable(false);
 		} else {
-			btn_go.setDisable(false);
+			btnGo.setDisable(false);
+		}
+
+		if (primeCall != null) {
+			Task<Void> primeTask = new PrimeTask(max, primeCall, taDisplay, btnGo);
+			new Thread(primeTask).start();
 		}
 
 	}

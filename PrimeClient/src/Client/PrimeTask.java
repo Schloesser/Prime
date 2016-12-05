@@ -2,35 +2,33 @@ package Client;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
-import java.util.List;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import util.ui.alerts.RmiAlert;
 
-public class PrimeIntTask extends Task<Void> {
+public class PrimeTask extends Task<Void> {
 
 	private int max;
-	private TextArea ta_display;
-	private Button btn_go;
+	private TextArea taDisplay;
+	private Button btnGo;
+	private PrimeCall primeCall;
 
-	public PrimeIntTask(int max, TextArea ta_display, Button btn_go) {
+	public PrimeTask(int max, PrimeCall primeCall ,TextArea taDisplay, Button btnToEnable) {
 		this.max = max;
-		this.ta_display = ta_display;
-		this.btn_go = btn_go;
+		this.taDisplay = taDisplay;
+		this.btnGo = btnToEnable;
+		this.primeCall = primeCall;
 	}
 
 	@Override
 	protected Void call() throws Exception {
 		try {
-			List<Integer> primes = PrimeClient.getPrimeInteger(max);
-			String out = "";
-			for (Integer prime : primes) {
-				out = out + String.valueOf(prime) + "\n";
-			}
-			final String output = out;
-			Platform.runLater(() -> ta_display.setText(output));
+			
+			final String output = primeCall.getPrime(max);
+			Platform.runLater(() -> taDisplay.setText(output));
 		} catch (IOException | NotBoundException e) {
 			// zeige ErrorDialog an
 			// "Bitte versuchen Sie es erneut"
@@ -41,7 +39,7 @@ public class PrimeIntTask extends Task<Void> {
 			Platform.runLater(() -> new RmiAlert().showAndWait());
 		} finally {
 			// reenable Button
-			Platform.runLater(() -> btn_go.setDisable(false));
+			Platform.runLater(() -> btnGo.setDisable(false));
 		}
 		return null;
 	}
