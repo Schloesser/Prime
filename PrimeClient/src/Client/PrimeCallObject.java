@@ -1,5 +1,7 @@
 package Client;
 
+import Prime.PrimeObject;
+
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.util.List;
@@ -17,7 +19,7 @@ public class PrimeCallObject implements PrimeCall{
         String out = "";
         for (PrimeObject prime : primes)
         {
-            out = out + prime.toString();
+            out = out + prime.toString() + '\n';
         }
        return out;
     }

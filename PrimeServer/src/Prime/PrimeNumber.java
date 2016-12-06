@@ -1,5 +1,6 @@
 package Prime;
 
+
 import util.NumberToText;
 
 import java.util.ArrayList;
@@ -8,16 +9,7 @@ import java.util.List;
 public class PrimeNumber {
 
 
-	public String getPrimeStringNumber(int max)
-	{
-		return parseToStringNumber(calcPrime(max));
-	}
 
-	public String getPrimeString(int max)
-	{
-		return parseToString(calcPrime(max));
-
-	}
 
 
 
@@ -26,11 +18,29 @@ public class PrimeNumber {
 		return calcPrime(max);
 	}
 
+	public String getPrimeString(int max)
+	{
+		return parseToString(calcPrime(max));
+	}
+
+	public List<PrimeObject> getPrimeObjects(int max)
+	{
+		return parseToPrimeObjects(calcPrime(max));
+	}
+
+	public String getPrimeStringNumber(int max)
+	{
+		return parseToStringNumber(calcPrime(max));
+	}
+
+
+
 	/**
 	 *  This method parses a list of integers to a string of numbers ("1 2 3")
 	 * @param list
 	 * @return
 	 */
+
 	private String parseToStringNumber(List<Integer> list)
 	{
 		StringBuffer buffer = new StringBuffer();
@@ -42,6 +52,21 @@ public class PrimeNumber {
 		}
 		return buffer.toString();
 	}
+
+	private List<PrimeObject> parseToPrimeObjects(List<Integer> primes )
+	{
+		List<PrimeObject> primeObjects = new ArrayList<>();
+		for (Integer prime : primes)
+		{
+			primeObjects.add(new PrimeObject(prime));
+		}
+
+		return primeObjects;
+	}
+
+
+
+
 	/**
 	 *  This method parses a list of integers to words ("eins zwei drei")
 	 * @param list

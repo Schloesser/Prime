@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.util.List;
-
+import Prime.PrimeObject;
 import RemoteObjects.Prime;
 
 /**

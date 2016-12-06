@@ -3,6 +3,7 @@ package RemoteObjects;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+import Prime.PrimeObject;
 
 import Prime.PrimeNumber;
 
@@ -29,6 +30,12 @@ public class PrimeImpl extends UnicastRemoteObject implements Prime
 	public String getPrimeString(int max) throws RemoteException {
 		PrimeNumber prime = new PrimeNumber();
 		return prime.getPrimeString(max);
+	}
+
+	@Override
+	public List<PrimeObject> getPrimeObjects(int max) throws RemoteException {
+		PrimeNumber prime = new PrimeNumber();
+		return prime.getPrimeObjects(max);
 	}
 
 
