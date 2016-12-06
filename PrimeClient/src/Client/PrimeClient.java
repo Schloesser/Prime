@@ -34,5 +34,15 @@ public class PrimeClient {
         return primes;
     }
 
+    public static  List<PrimeObject> getPrimeObjects(int max) throws NotBoundException, IOException {
+
+        // intitalisieren des Remote-Objektes/Stubs mit der Implementation des Servers.
+        stub = (Prime) Naming.lookup("Prime");
+
+        List<PrimeObject> primes = stub.getPrimeObjects(max);
+
+        return primes;
+    }
+
 
 }

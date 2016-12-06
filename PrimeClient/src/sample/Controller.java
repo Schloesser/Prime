@@ -3,10 +3,7 @@ package sample;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 
-import Client.PrimeCall;
-import Client.PrimeCallInteger;
-import Client.PrimeCallString;
-import Client.PrimeTask;
+import Client.*;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,7 +41,7 @@ public class Controller {
 	}
     /**
      * Depend on which mode is selected by the radios, this method will print integers
-     * or strings to the text area. The data come from the server, so a NotBoundException will be thrown
+     * , strings or objects to the text area. The data come from the server, so a NotBoundException will be thrown
      * if the server can't handle the request.
      *
      * PLEASE DELETE THIS LINE IF YOU ALREADY IMPLEMENTED THE CATCH OF THE EXCEPTION OTHERWISE PLEASE IMPLEMENT IT!:)
@@ -82,10 +79,10 @@ public class Controller {
 
 		} else if (radioString.isSelected()) {
 			primeCall = new PrimeCallString();
+
 		} else if (radioObject.isSelected()) {
-			// TODO: Hier sollte der RMICall als Objekt hinzugefügt werden
-			primeCall = null;
-			btnGo.setDisable(false);
+			primeCall = new PrimeCallObject();
+
 		} else {
 			btnGo.setDisable(false);
 		}
