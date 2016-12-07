@@ -9,6 +9,10 @@ import Prime.PrimeNumber;
 
 public class PrimeImpl extends UnicastRemoteObject implements Prime
 {
+
+	private PrimeNumber prime;
+
+
 	/**
 	 * 
 	 */
@@ -16,25 +20,26 @@ public class PrimeImpl extends UnicastRemoteObject implements Prime
 	public PrimeImpl() throws RemoteException
 	{
 		super();
+		prime = new PrimeNumber();
 	}
 
 
 
 	@Override
 	public List<Integer> getPrimeInt(int max) throws RemoteException {
-		PrimeNumber prime = new PrimeNumber();
+
 		return prime.getPrimeInterger(max);
 	}
 	
 	@Override
 	public String getPrimeString(int max) throws RemoteException {
-		PrimeNumber prime = new PrimeNumber();
+
 		return prime.getPrimeString(max);
 	}
 
 	@Override
 	public List<PrimeObject> getPrimeObjects(int max) throws RemoteException {
-		PrimeNumber prime = new PrimeNumber();
+
 		return prime.getPrimeObjects(max);
 	}
 
