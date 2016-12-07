@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 /**
  * This class represents a Prime. The serialVersionUID has to be the same as the serialVersionUID on the server!!!
- * CHANGING THIS CLASS WITHOUT SYNCHRONIZE ON SERVER WILL RISE AN EXCEPTION !!!!!!!!!!!
+ * CHANGING THIS CLASS WITHOUT SYNCHRONIZE THE SERVER WILL RISE AN EXCEPTION !!!!!!!!!!!
+ * If you don't know exactly what this class is doing, don't think about playing god.
  */
 public class PrimeObject implements Serializable{
 

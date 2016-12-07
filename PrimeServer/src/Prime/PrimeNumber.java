@@ -9,10 +9,6 @@ import java.util.List;
 public class PrimeNumber {
 
 
-
-
-
-
 	public List<Integer> getPrimeInterger(int max)
 	{
 		return calcPrime(max);
@@ -53,6 +49,11 @@ public class PrimeNumber {
 		return buffer.toString();
 	}
 
+	/**
+	 *  This method parses a list of integers to a list  of PrimeObjects
+	 * @param list
+	 * @return
+	 */
 	private List<PrimeObject> parseToPrimeObjects(List<Integer> primes )
 	{
 		List<PrimeObject> primeObjects = new ArrayList<>();
@@ -128,6 +129,17 @@ public class PrimeNumber {
 			}
 
 		}
+
+		return list;
+	}
+
+
+
+	private List<Integer> calcPrime2(int max) {
+
+		List<Integer> list = new ArrayList<>();
+
+
 
 		return list;
 	}
