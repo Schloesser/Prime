@@ -22,7 +22,7 @@ public class PrimeServer {
 
 			registry.rebind("Prime", server);
 
-			System.out.println("[System] Chat Remote Object is ready:");
+			System.out.println("[System] Remote Object is ready:");
 
 		} catch (Exception e) {
 			System.out.println("[System] Server failed: " + e);
