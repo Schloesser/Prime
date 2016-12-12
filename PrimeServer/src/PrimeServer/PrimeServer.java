@@ -3,7 +3,7 @@ package PrimeServer;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import RemoteObjects.PrimeImpl;
+import RemoteObjects.*;
 
 public class PrimeServer {
 
@@ -18,9 +18,9 @@ public class PrimeServer {
 																	
 			Registry registry = LocateRegistry.getRegistry();
 
-			PrimeImpl server = new PrimeImpl();
+			Prime serverRMO = new PrimeImpl();
 
-			registry.rebind("Prime", server);
+			registry.rebind("Prime", serverRMO);
 
 			System.out.println("[System] Remote Object is ready:");
 
